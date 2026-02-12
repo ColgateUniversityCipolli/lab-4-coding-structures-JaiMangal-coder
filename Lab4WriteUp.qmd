@@ -174,19 +174,41 @@ odds = seq(1,10,2)
 
 ## Part h
 Below, I create an empty column called `x12`. Fill in the details of the `for(...)` loop to ensure `x12` is the product of `x1` and `x2`.
+
+**Solution**
+I filled in loop making sure to have my iterator i hold place in which spot of column of x12 I am filling and using the same i to grab the right index from x1 and x2 to multiply together.
 ```{r}
 #| size: "scriptsize"
 n <- nrow(df)                # How many rows to we have to fill?
 df$x12 <- rep(NA, nrow(df))   # Create an empty column for x12
 for(i in 1:nrow(df)){
-  # REPLACE WITH THE NECESSARY CODE
+  df$x12[i] = df$x1[i] * df$x2[i]
 }
+(df$x1)
+(df$x2)
+(df$x12)
 ```
 
 ## Part i
 Write a function called `calculate.score(...)` that takes three arguments representing `x1`, `x2`, and `x3`) and returns a single value based on the formula:
 $$Score = (x_1 \times 2) + x_2 - x_3$$
 Use your function to create a new column `total.score` in our data frame `df`.
+
+**Solution**
+```{r}
+#| size: "scriptsize"
+#| 
+calculate.score = function(x1, x2,x3){
+
+    total.score = rep(NA, length(x1))
+    for(i in 1:length(x1)){
+      total.score[i] = (x1[i]*2) + x2[i] - x3[i]
+    }
+    return(total.score)
+}
+df$total.score =  calculate.score(df$x1,df$x2,df$x3)
+(df$total.score)
+```
 
 ## Part j
 Create a function called `evaluate.row(...)` that takes one argument and returns "low" when the argument is less than 4, "mid" when the argument is between 4 and 7 (inclusive), and "high" when the arguement is 8 or larger. Then, use `sapply(...)` to apply it to column `x1`.
