@@ -80,6 +80,15 @@ x <- sample(x=1:10,          # sample from 1, 2, 3, ..., 10
             replace = TRUE)  # allowed to sample the same item multiple times
 ```
 
+**Solution** 
+I am going to directly grab the 3rd item using the square bracket notation. 
+```{r}
+#| size: "scriptsize"
+
+(x[3])
+
+```
+
 ## Part b
 
 Below, I create a data frame filled with random observations.
@@ -101,20 +110,67 @@ df <- data.frame(x1 = sample(x=1:10,          # sample from 1, 2, 3, ..., 10
 ## Part b 
 Use the `head(...)` function to peek at the data frame.
 
+**Solution** 
+
+I use head(...) here to get the first 6 rows of the data frame.
+```{r}
+#| size: "scriptsize"
+head(df)
+```
+
 ## Part c
 Ask for the column `x1`.
+
+**Solution**
+
+I use the dollarsign notation to ask for which column I want to look at. I could also use the bracket notation if I wanted.
+```{r}
+#| size: "scriptsize"
+(df$x1)
+```
 
 ## Part d
 Ask for the fifth row of the data frame.
 
+**Solution**
+
+I use the bracket notation to grab my specific row from the df. 
+```{r}
+#| size: "scriptsize"
+(df[5,])
+```
+
 ## Part e
 Ask for the the value of `x1` in the fifth row of the data frame.
+
+**Solution**
+I use bracket notation and dollar sign notation here.  
+```{r}
+#| size: "scriptsize"
+(df[5,"x1"])
+(df[5,]$x1)
+```
 
 ## Part f
 Ask for the the value of in the third column and the fifth row of the data frame.
 
+**Solution**
+I use bracket notation here. I could also do dollarsign notation. 
+```{r}
+#| size: "scriptsize"
+(df[5,"x3"])
+```
+
 ## Part g
 Create a sequence from 1 to 10 by 2 and use it to print the odd rows of the data frame.
+
+**Solution**
+I create my odds vector first. Then I use bracket notation wth my vector as an argument for the rows place to grab only odd rows. 
+```{r}
+#| size: "scriptsize"
+odds = seq(1,10,2)
+(df[odds,])
+```
 
 ## Part h
 Below, I create an empty column called `x12`. Fill in the details of the `for(...)` loop to ensure `x12` is the product of `x1` and `x2`.
