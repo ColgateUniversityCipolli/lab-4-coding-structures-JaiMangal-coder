@@ -96,15 +96,24 @@ meals = c(dinner.choices,bfast.choice)
 
 ```{r}
 scrape.html = function(meal){ #takes in the link of the meal
+
+  #copying what i did in lab4:
   recipe.item = read_html(meal)
+  recipe.title <- html_text(html_element(recipe.item, "h1")) #put this in after to save me headaches when i just want to grab this info from the function
+
   ingredients.section = html_element(recipe.item, "#ingredients")
   ingredients = html_elements(ingredients.section, "li")
+
   instructions.section = html_element(recipe.item, "#instructions")
   instructions = html_elements(instructions.section, "li")
+
   image.element = html_element(recipe.item, ".figure-img")
   image.url = paste("website/",html_attr(image.element, "src"), sep="")
-  return()
+  
+  return(list(title = recipe.title, img.url = image.url, ingredients = ingredients, instructions = instructions))
 }
+recipes = lapply(meals,scrape.html)
+(recipes)
 ```
 
 ```{r}
