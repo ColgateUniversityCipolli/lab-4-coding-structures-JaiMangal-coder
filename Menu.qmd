@@ -45,6 +45,7 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 #| label: load-packages
 #| include: false
 library(tidyverse)
+library(rvest)
 ```
 
 <!-- Code For Building Menu Here -->
@@ -83,6 +84,37 @@ dinner <- c("website/AfricanPeanutSoup.html",
             "website/SalmonChowder.html",
             "website/Shakshuka.html")
 ```
+
+```{r}
+dinner.choices = sample(dinner, 3, replace=FALSE) #grabs 3 random dinners, not replace, becasue I don't want multiple of the same recipe
+bfast.choice = sample(breakfasts, 1, replace = FALSE) #one random bfast
+
+meals = c(dinner.choices,bfast.choice)
+(meals)
+
+```
+
+```{r}
+scrape.html = function(meal){ #takes in the link of the meal
+  recipe.item = read_html(meal)
+  ingredients.section = html_element(recipe.item, "#ingredients")
+  ingredients = html_elements(ingredients.section, "li")
+  instructions.section = html_element(recipe.item, "#instructions")
+  instructions = html_elements(instructions.section, "li")
+  image.element = html_element(recipe.item, ".figure-img")
+  image.url = paste("website/",html_attr(image.element, "src"), sep="")
+  return()
+}
+```
+
+```{r}
+for(i in length(meals)){
+  scrape.html(meals[i])
+
+}
+
+```
+
 
 # Ingredients
 
