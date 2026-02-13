@@ -86,15 +86,16 @@ dinner <- c("website/AfricanPeanutSoup.html",
 ```
 
 ```{r}
+#| echo: false
 dinner.choices = sample(dinner, 3, replace=FALSE) #grabs 3 random dinners, not replace, becasue I don't want multiple of the same recipe
 bfast.choice = sample(breakfasts, 1, replace = FALSE) #one random bfast
 
 meals = c(dinner.choices,bfast.choice)
-(meals)
 
 ```
 
 ```{r}
+#| echo: false
 scrape.html = function(meal){ #takes in the link of the meal
 
   #copying what i did in lab4:
@@ -113,19 +114,25 @@ scrape.html = function(meal){ #takes in the link of the meal
   return(list(title = recipe.title, img.url = image.url, ingredients = ingredients, instructions = instructions))
 }
 recipes = lapply(meals,scrape.html)
-(recipes)
 ```
 
 ```{r}
+#| echo: false
+all.ingredients = c()
 for(i in length(meals)){
-  scrape.html(meals[i])
-
+  all.ingredients = c(all.ingredients, recipes[[i]]$ingredients)
 }
-
 ```
 
 
 # Ingredients
+
+```{r}
+#| echo: false
+#| results: "asis"
+formatted_list <- paste("-", all.ingredients)
+cat(formatted_list, sep = "\n")
+```
 
 \newpage
 
