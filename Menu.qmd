@@ -118,10 +118,7 @@ recipes = lapply(meals,scrape.html)
 
 ```{r}
 #| echo: false
-all.ingredients = c()
-for(i in length(meals)){
-  all.ingredients = c(all.ingredients, recipes[[i]]$ingredients)
-}
+
 ```
 
 
@@ -130,8 +127,11 @@ for(i in length(meals)){
 ```{r}
 #| echo: false
 #| results: "asis"
-formatted_list <- paste("-", all.ingredients)
-cat(formatted_list, sep = "\n")
+all.ingredients = c()
+for(i in 1:length(meals)){
+  formatted_list <- paste("-", html_text(recipes[[i]]$ingredients))
+  cat(formatted_list, sep = "\n")
+}
 ```
 
 \newpage
