@@ -118,7 +118,26 @@ recipes = lapply(meals,scrape.html)
 
 ```{r}
 #| echo: false
+#| results: "asis"
 
+print.recipe = function(recipe){ #prints recipe out according to lab4 aesthetics
+  recipe.title = recipe$title
+  img.url = recipe$img.url
+  ingredients = recipe$ingredients
+  instructions = recipe$instructions
+
+  #print img here, using cipolli code
+  cat(paste('![', recipe.title, '](', img.url, "){width=50%}", sep="")) 
+
+  #ingredients, using cipolli code again
+  formatted_list <- paste("-", html_text(ingredients))
+  cat(formatted_list, sep = "\n")
+
+  #instructions, using cipolli again
+  formatted_list <- paste("1.", html_text(instructions))
+  cat(formatted_list, sep = "\n")
+
+}
 ```
 
 
@@ -127,9 +146,9 @@ recipes = lapply(meals,scrape.html)
 ```{r}
 #| echo: false
 #| results: "asis"
-all.ingredients = c()
+
 for(i in 1:length(meals)){
-  formatted_list <- paste("-", html_text(recipes[[i]]$ingredients))
+  formatted_list <- paste("-", html_text(recipes[[i]]$ingredients)) #inspired by ur code in printing out the ingredients from lab4
   cat(formatted_list, sep = "\n")
 }
 ```
