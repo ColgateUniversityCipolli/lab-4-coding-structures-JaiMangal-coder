@@ -439,10 +439,24 @@ Read [https://www.scrapingbee.com/blog/is-web-scraping-legal/](Is Web Sraping Le
 ## Conditionals
 Did you use conditional statements in your code? If yes, how. If not, are there places you could have used them but did something else?
 
+**Solution**
+
+I'm assuming all of these questions are in context to the code I wrote in Menu.qmd. 
+
+I didn't use conditionals in my code. Looking back I also don't think there are any places for me to use them either as I'm not comparing any instances of data.
+
 ## Loops
 Did you use loops in your code? If yes, how. If not, are there places you could have used them but did something else?
 
+**Solution**
+
+I did use loops in my code. I used a loop to go through each recipe and grab all the ingredients so I could combine them into one grocery list. I liked this solution because if I wanted to scale up the number of recipes, it can easily handle that. I used lapply to apply my scrape html function on each recipe in a vector, so in that case it looped through the vector. 
+
 ## Functions
 Did you use functions in your code? If yes, how. If not, are there places you could have used them but did something else?
+
+**Solution**
+
+I tried to use functions as much as possible to cut out repeatble work. I had a scrape html function that would grab all the necessary html info given the recipe. That way, it cut out me having to repeatedly get the html four different times. I also had a print function that would nicely print out the ingredients and instructions and image in the correct format. Doing that allowed me to just call the function four times for each recipe.  
 
 
