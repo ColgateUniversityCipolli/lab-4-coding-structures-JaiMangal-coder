@@ -128,20 +128,25 @@ print.recipe = function(recipe){ #prints recipe out according to lab4 aesthetics
 
   #print img here, using cipolli code
   cat(paste('![', recipe.title, '](', img.url, "){width=50%}", sep="")) 
+  cat("\n\n")
 
+  cat("## Ingredients\n\n") #i like the numbered sections here, i know i can remove it if wanted
   #ingredients, using cipolli code again
   formatted_list <- paste("-", html_text(ingredients))
   cat(formatted_list, sep = "\n")
 
+  cat("\n\n## Instructions\n\n")
   #instructions, using cipolli again
   formatted_list <- paste("1.", html_text(instructions))
   cat(formatted_list, sep = "\n")
+  
+  cat("\n\n")
 
 }
 ```
 
-
-# Ingredients
+<!-- dont want this numbered so recipe one starts with section 1, etc. -->
+# Ingredients {.unnumbered}
 
 ```{r}
 #| echo: false
@@ -156,15 +161,41 @@ for(i in 1:length(meals)){
 \newpage
 
 # Recipe One
+```{r}
+#| echo: false
+#| results: "asis"
+
+print.recipe(recipes[[1]])
+```
 
 \newpage
 
 # Recipe Two
+```{r}
+#| echo: false
+#| results: "asis"
+
+print.recipe(recipes[[2]])
+```
 
 \newpage
 
 # Recipe Three
 
+```{r}
+#| echo: false
+#| results: "asis"
+
+print.recipe(recipes[[3]])
+```
+
 \newpage
 
 # Breakfast Recipe
+
+```{r}
+#| echo: false
+#| results: "asis"
+
+print.recipe(recipes[[4]])
+```
